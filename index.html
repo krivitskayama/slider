@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Карусель </title>
+<link rel="stylesheet" href="">
+<style>
+  .carousel {
+    width: 300px;
+    overflow: hidden;
+    position: relative;
+  }
+  .slides {
+    display: flex;
+    position: relative;
+    left: 0;
+  }
+  .slide {
+    width: 300px;
+    flex-shrink: 0;
+  }
+  img {
+    width: 100%;
+    display: block;
+  }
+  button {
+    position: absolute;
+    top: 50%;
+    font-size: 18px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor:crosshair;
+  }
+  #prev {
+    left: 5px;
+  }
+  #next {
+    right: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="carousel">
+  <div class="slides" id="slides">
+    <div class="slide"><img src="/img/1.png" alt="Слайд 1"></div>
+    <div class="slide"><img src="/img/2.png" alt="Слайд 2"></div>
+    <div class="slide"><img src="/img/3.png" alt="Слайд 3"></div>
+    <div class="slide"><img src="/img/4.png" alt="Слайд 4"></div>
+  </div>
+  <button id="prev">&#10094;</button>
+  <button id="next">&#10095;</button>
+</div>
+
+
+<script>
+    const slides = document.getElementById('slides');
+  const slideCount = slides.children.length;
+  let currentIndex = 0;
+  const slideWidth = 300;
+
+  function showSlide(index) {
+    slides.style.left = -index * slideWidth + 'px';
+    currentIndex = index;
+  }
+
+  document.getElementById('prev').addEventListener('click', () => {
+    showSlide(currentIndex - 1);
+  });
+
+  document.getElementById('next').addEventListener('click', () => {
+    showSlide(currentIndex + 1);
+  });
+
+  showSlide(0);
+
+</script>
+</body>
+</html>
